@@ -10,12 +10,29 @@
 
 &mt {
     tapping-term-ms = <300>;
-    quick-tap-ms = <0>;
+    quick-tap-ms = <200>;
     flavor = "tap-preferred";
 };
 
 / {
-    combos { compatible = "zmk,combos"; };
+    combos {
+        compatible = "zmk,combos";
+
+        left_bootloader {
+            bindings = <&bootloader>;
+            key-positions = <38 37 36>;
+        };
+
+        right_bul {
+            bindings = <&tog 5>;
+            key-positions = <33 34 35>;
+        };
+
+        left_bul {
+            bindings = <&tog 5>;
+            key-positions = <24 25 26>;
+        };
+    };
 
     keymap {
         compatible = "zmk,keymap";
@@ -31,13 +48,13 @@
 &kp ESC    &kp Q           &kp W           &kp E        &kp R             &kp T    &kp Y  &kp U              &kp I        &kp O            &kp P               &kp BSPC
 &kp TAB    &mt LEFT_WIN A  &mt LEFT_ALT S  &mt LCTRL D  &mt LEFT_SHIFT F  &kp G    &kp H  &mt RIGHT_SHIFT J  &mt RCTRL K  &mt RIGHT_ALT L  &mt RWIN SEMICOLON  &kp ENTER
 &kp LSHFT  &kp Z           &kp X           &kp C        &kp V             &kp B    &kp N  &kp M              &kp COMMA    &kp DOT          &kp FSLH            &kp APOS
-                                           &mo 4        &kp SPACE         &mo 1    &mo 2  &kp SPACE          &mo 5
+                                           &mo 3        &kp SPACE         &mo 1    &mo 2  &kp SPACE          &mo 4
             >;
 
-            label = "qwerty";
+            label = "QWERTY";
         };
 
-        arrow_media {
+        arrow_media_layer {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
             // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
@@ -45,16 +62,16 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp ESC    &none         &none              &none      &none           &none    &none       &kp PAGE_DOWN  &kp PAGE_UP       &none       &none     &kp BSPC
-&kp TAB    &kp LEFT_WIN  &kp LEFT_ALT       &kp LCTRL  &kp LEFT_SHIFT  &none    &kp LEFT    &kp DOWN       &kp UP_ARROW      &kp RIGHT   &kp HOME  &kp ENTER
-&kp LSHFT  &none         &kp C_VOLUME_DOWN  &none      &kp C_VOL_UP    &none    &kp C_MUTE  &kp C_PREV     &kp C_PLAY_PAUSE  &kp C_NEXT  &kp END   &none
+&kp ESC    &none         &none              &none      &none           &none    &none       &kp PAGE_DOWN  &kp PAGE_UP   &none      &kp HOME  &kp BSPC
+&kp TAB    &kp LEFT_WIN  &kp LEFT_ALT       &kp LCTRL  &kp LEFT_SHIFT  &none    &kp LEFT    &kp DOWN       &kp UP_ARROW  &kp RIGHT  &none     &kp ENTER
+&kp LSHFT  &none         &kp C_VOLUME_DOWN  &none      &kp C_VOL_UP    &none    &kp C_MUTE  &kp C_NEXT     &kp C_PREV    &kp C_PP   &kp END   &kp DEL
                                             &kp LCTRL  &kp SPACE       &none    &none       &kp ENTER      &kp LGUI
             >;
 
-            label = "arrow";
+            label = "hjkl_media";
         };
 
-        symbols {
+        symbols_layer {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
             // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
@@ -64,53 +81,46 @@
             bindings = <
 &kp GRAVE  &kp EXCL                    &kp AT                      &kp HASH       &kp DLLR                                &kp PRCNT         &none   &none            &none      &none          &none          &kp BSPC
 &kp CARET  &kp AMPERSAND               &kp ASTERISK                &kp PIPE       &kp MINUS                               &kp EQUAL         &none   &kp RIGHT_SHIFT  &kp LCTRL  &kp RIGHT_ALT  &kp RIGHT_WIN  &kp ENTER
-&kp SLASH  &mt GREATER_THAN LESS_THAN  &mt RIGHT_BRACE LEFT_BRACE  &mt RBKT LBKT  &mt RIGHT_PARENTHESIS LEFT_PARENTHESIS  &kp BACKSLASH     &none   &none            &none      &none          &none          &none
+&kp SLASH  &mt GREATER_THAN LESS_THAN  &mt RIGHT_BRACE LEFT_BRACE  &mt RBKT LBKT  &mt RIGHT_PARENTHESIS LEFT_PARENTHESIS  &kp BACKSLASH     &none   &none            &none      &none          &none          &kp DEL
                                                                    &kp TAB        &kp SPACE                               &kp UNDERSCORE    &trans  &none            &none
             >;
 
-            label = "symbols";
+            label = "!@#$";
         };
 
-        bluetooth_layer {
+        number_layer {
             bindings = <
-&none  &none  &none  &none  &none  &none    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR
-&none  &none  &none  &none  &none  &none    &none         &none         &none         &none         &none         &none
-&none  &none  &none  &none  &none  &none    &none         &none         &none         &none         &none         &none
-                     &none  &none  &none    &none         &none         &none
+&kp ESC  &kp LC(Q)  &kp LC(W)  &kp LC(E)  &kp LC(R)  &kp LC(T)         &kp ASTERISK  &kp N7     &kp N8    &kp N9  &kp SLASH  &kp BSPC
+&kp TAB  &kp LC(A)  &kp LC(S)  &kp LC(D)  &kp LC(F)  &kp LC(G)         &kp KP_MINUS  &kp N4     &kp N5    &kp N6  &kp N0     &kp ENTER
+&none    &kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LC(B)         &kp KP_PLUS   &kp N1     &kp N2    &kp N3  &kp EQUAL  &kp DEL
+                               &kp LCTRL  &kp SPACE  &kp LEFT_SHIFT    &none         &kp ENTER  &kp LGUI
             >;
 
-            label = "bluetooth";
+            label = "12345";
         };
 
-        number {
-            bindings = <
-&kp ESC  &none         &none         &none      &none           &none        &kp ASTERISK  &kp N7     &kp N8    &kp N9  &kp SLASH  &kp BSPC
-&kp TAB  &kp LEFT_WIN  &kp LEFT_ALT  &kp LCTRL  &kp LEFT_SHIFT  &none        &kp KP_MINUS  &kp N4     &kp N5    &kp N6  &kp N0     &kp ENTER
-&none    &kp LC(Z)     &kp LC(X)     &kp LC(C)  &kp LC(V)       &kp LC(B)    &kp KP_PLUS   &kp N1     &kp N2    &kp N3  &kp EQUAL  &kp DEL
-                                     &kp LCTRL  &kp SPACE       &none        &none         &kp ENTER  &kp LGUI
-            >;
-
-            label = "number";
-        };
-
-        Fn {
+        Fn_layer {
             bindings = <
 &none  &kp F9  &kp F10  &kp F11  &kp F12    &none    &none   &none            &none      &none          &none          &kp BSPC
 &none  &kp F5  &kp F6   &kp F7   &kp F8     &none    &none   &kp RIGHT_SHIFT  &kp LCTRL  &kp RIGHT_ALT  &kp RIGHT_WIN  &kp ENTER
-&none  &kp F1  &kp F2   &kp F3   &kp F4     &none    &none   &none            &none      &none          &none          &none
+&none  &kp F1  &kp F2   &kp F3   &kp F4     &none    &none   &none            &none      &none          &none          &kp DEL
                         &kp TAB  &kp SPACE  &none    &trans  &none            &none
             >;
 
-            label = "fn";
+            label = "Fn";
+        };
+
+        both_layer {
+            bindings = <
+&bt BT_CLR  &bt BT_SEL 4  &bt BT_SEL 3  &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR
+&none       &none         &none         &none         &none         &none           &none         &none         &none         &none         &none         &none
+&none       &none         &none         &none         &none         &none           &none         &none         &none         &none         &none         &none
+                                        &none         &none         &none           &none         &none         &none
+            >;
+
+            label = "Bulebooth";
         };
     };
 
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        bul {
-            if-layers = <1 2>;
-            then-layer = <3>;
-        };
-    };
+    conditional_layers { compatible = "zmk,conditional-layers"; };
 };
