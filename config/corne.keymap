@@ -9,19 +9,14 @@
 #include <dt-bindings/zmk/keys.h>
 
 &mt {
-    tapping-term-ms = <300>;
-    quick-tap-ms = <200>;
+    quick-tap-ms = <150>;
     flavor = "tap-preferred";
+    tapping-term-ms = <150>;
 };
 
 / {
     combos {
         compatible = "zmk,combos";
-
-        left_bootloader {
-            bindings = <&bootloader>;
-            key-positions = <38 37 36>;
-        };
 
         right_bul {
             bindings = <&tog 5>;
@@ -45,13 +40,13 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp ESC    &kp Q           &kp W           &kp E        &kp R             &kp T    &kp Y  &kp U              &kp I        &kp O            &kp P               &kp BSPC
-&kp TAB    &mt LEFT_WIN A  &mt LEFT_ALT S  &mt LCTRL D  &mt LEFT_SHIFT F  &kp G    &kp H  &mt RIGHT_SHIFT J  &mt RCTRL K  &mt RIGHT_ALT L  &mt RWIN SEMICOLON  &kp ENTER
-&kp LSHFT  &kp Z           &kp X           &kp C        &kp V             &kp B    &kp N  &kp M              &kp COMMA    &kp DOT          &kp FSLH            &kp APOS
-                                           &mo 3        &kp SPACE         &mo 1    &mo 2  &kp SPACE          &mo 4
+&kp TAB    &kp Q           &kp W           &kp E        &kp R             &kp T        &kp Y        &kp U              &kp I        &kp O            &kp P               &kp BSPC
+&kp ESC    &mt LEFT_WIN A  &mt LEFT_ALT S  &mt LCTRL D  &mt LEFT_SHIFT F  &kp G        &kp H        &mt RIGHT_SHIFT J  &mt RCTRL K  &mt RIGHT_ALT L  &mt RWIN SEMICOLON  &kp SQT
+&kp LSHFT  &kp Z           &kp X           &kp C        &kp V             &kp B        &kp N        &kp M              &kp COMMA    &kp DOT          &kp SLASH           &key_repeat
+                                           &mo 3        &kp SPACE         &lt 1 TAB    &key_repeat  &lt 2 ENTER        &mo 4
             >;
 
-            label = "QWERTY";
+            label = "Corne";
         };
 
         arrow_media_layer {
@@ -62,10 +57,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp ESC    &none         &none              &none      &none           &none    &none       &kp PAGE_DOWN  &kp PAGE_UP   &none      &kp HOME  &kp BSPC
-&kp TAB    &kp LEFT_WIN  &kp LEFT_ALT       &kp LCTRL  &kp LEFT_SHIFT  &none    &kp LEFT    &kp DOWN       &kp UP_ARROW  &kp RIGHT  &none     &kp ENTER
-&kp LSHFT  &none         &kp C_VOLUME_DOWN  &none      &kp C_VOL_UP    &none    &kp C_MUTE  &kp C_NEXT     &kp C_PREV    &kp C_PP   &kp END   &kp DEL
-                                            &kp LCTRL  &kp SPACE       &none    &none       &kp ENTER      &kp LGUI
+&kp TAB    &none         &none              &none      &none           &none    &none       &none       &none         &none      &none              &kp BSPC
+&kp ESC    &kp LEFT_WIN  &kp LEFT_ALT       &kp LCTRL  &kp LEFT_SHIFT  &none    &kp LEFT    &kp DOWN    &kp UP_ARROW  &kp RIGHT  &mt HOME PAGE_UP   &kp ENTER
+&kp LSHFT  &none         &kp C_VOLUME_DOWN  &none      &kp C_VOL_UP    &none    &kp C_MUTE  &kp C_PREV  &kp C_NEXT    &kp C_PP   &mt END PAGE_DOWN  &kp DEL
+                                            &kp LCTRL  &kp SPACE       &none    &kp ENTER   &kp SPACE   &kp LGUI
             >;
 
             label = "hjkl_media";
@@ -79,10 +74,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp GRAVE  &kp EXCL                    &kp AT                      &kp HASH       &kp DLLR                                &kp PRCNT         &none   &none            &none      &none          &none          &kp BSPC
-&kp CARET  &kp AMPERSAND               &kp ASTERISK                &kp PIPE       &kp MINUS                               &kp EQUAL         &none   &kp RIGHT_SHIFT  &kp LCTRL  &kp RIGHT_ALT  &kp RIGHT_WIN  &kp ENTER
-&kp SLASH  &mt GREATER_THAN LESS_THAN  &mt RIGHT_BRACE LEFT_BRACE  &mt RBKT LBKT  &mt RIGHT_PARENTHESIS LEFT_PARENTHESIS  &kp BACKSLASH     &none   &none            &none      &none          &none          &kp DEL
-                                                                   &kp TAB        &kp SPACE                               &kp UNDERSCORE    &trans  &none            &none
+&kp CARET        &kp AMPERSAND    &kp AT          &kp HASH              &kp DLLR               &kp PRCNT         &none   &none            &none      &none          &none          &kp BSPC
+&mt TILDE GRAVE  &kp EXCLAMATION  &kp ASTERISK    &kp MINUS             &kp EQUAL              &kp LBKT          &none   &kp RIGHT_SHIFT  &kp LCTRL  &kp RIGHT_ALT  &kp RIGHT_WIN  &kp ENTER
+&kp BACKSLASH    &kp RIGHT_BRACE  &kp LEFT_BRACE  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp RBKT          &none   &none            &none      &none          &none          &kp DEL
+                                                  &kp PIPE              &kp SPACE              &kp UNDERSCORE    &trans  &none            &none
             >;
 
             label = "!@#$";
@@ -90,10 +85,10 @@
 
         number_layer {
             bindings = <
-&kp ESC  &kp LC(Q)  &kp LC(W)  &kp LC(E)  &kp LC(R)  &kp LC(T)         &kp ASTERISK  &kp N7     &kp N8    &kp N9  &kp SLASH  &kp BSPC
-&kp TAB  &kp LC(A)  &kp LC(S)  &kp LC(D)  &kp LC(F)  &kp LC(G)         &kp KP_MINUS  &kp N4     &kp N5    &kp N6  &kp N0     &kp ENTER
-&none    &kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LC(B)         &kp KP_PLUS   &kp N1     &kp N2    &kp N3  &kp EQUAL  &kp DEL
-                               &kp LCTRL  &kp SPACE  &kp LEFT_SHIFT    &none         &kp ENTER  &kp LGUI
+&kp TAB       &kp LC(Q)  &kp LC(W)  &kp LC(E)  &kp LC(R)  &kp LC(T)    &kp ASTERISK     &kp N7     &kp N8         &kp N9  &kp EQUAL  &kp BSPC
+&kp ESC       &kp LC(A)  &kp LC(S)  &kp LC(D)  &kp LC(F)  &kp LC(G)    &kp MINUS        &kp N4     &kp N5         &kp N6  &kp N0     &kp ENTER
+&kp LEFT_WIN  &kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LC(B)    &kp PLUS         &kp N1     &kp N2         &kp N3  &kp SLASH  &kp DOT
+                                    &none      &none      &none        &kp RIGHT_SHIFT  &kp RCTRL  &kp RIGHT_ALT
             >;
 
             label = "12345";
@@ -101,10 +96,10 @@
 
         Fn_layer {
             bindings = <
-&none  &kp F9  &kp F10  &kp F11  &kp F12    &none    &none   &none            &none      &none          &none          &kp BSPC
-&none  &kp F5  &kp F6   &kp F7   &kp F8     &none    &none   &kp RIGHT_SHIFT  &kp LCTRL  &kp RIGHT_ALT  &kp RIGHT_WIN  &kp ENTER
-&none  &kp F1  &kp F2   &kp F3   &kp F4     &none    &none   &none            &none      &none          &none          &kp DEL
-                        &kp TAB  &kp SPACE  &none    &trans  &none            &none
+&none  &kp F12  &kp F11  &kp F10  &kp F9     &none    &none   &none            &none      &none          &none          &kp BSPC
+&none  &kp F4   &kp F3   &kp F2   &kp F1     &none    &none   &kp RIGHT_SHIFT  &kp LCTRL  &kp RIGHT_ALT  &kp RIGHT_WIN  &kp ENTER
+&none  &kp F8   &kp F7   &kp F6   &kp F5     &none    &none   &none            &none      &none          &none          &kp DEL
+                         &kp TAB  &kp SPACE  &none    &trans  &none            &none
             >;
 
             label = "Fn";
@@ -114,7 +109,7 @@
             bindings = <
 &bt BT_CLR  &bt BT_SEL 4  &bt BT_SEL 3  &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR
 &none       &none         &none         &none         &none         &none           &none         &none         &none         &none         &none         &none
-&none       &none         &none         &none         &none         &none           &none         &none         &none         &none         &none         &none
+&sys_reset  &none         &none         &none         &none         &bootloader     &bootloader   &none         &none         &none         &none         &sys_reset
                                         &none         &none         &none           &none         &none         &none
             >;
 
